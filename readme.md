@@ -15,3 +15,8 @@ Mostly used below words as message prefix
 - Update
 - Fix
 - Delete
+
+## Git branch pattern
+
+- Main branch is **master**
+- Feature branch is **feature/what-do-need-to-do-into-this-branch**
