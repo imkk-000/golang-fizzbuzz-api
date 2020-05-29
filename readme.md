@@ -46,7 +46,7 @@ docker run -d -p 8080:8080 fizzbuzz-stub-api
 
 ## API Spectification
 
-### **POST** /setModulationSequence
+### POST /setModulationSequence
 
 #### Request
 
@@ -90,7 +90,7 @@ docker run -d -p 8080:8080 fizzbuzz-stub-api
 }
 ```
 
-### **GET** /saying/{number}
+### GET /saying/{number}
 
 #### Request
 
