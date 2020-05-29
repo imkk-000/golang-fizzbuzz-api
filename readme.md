@@ -46,9 +46,9 @@ docker run -d -p 8080:8080 fizzbuzz-stub-api
 
 ## API Spectification
 
-`POST /setModulationSequence`
+### **POST** /setModulationSequence
 
-### Request
+#### Request
 
 - Send input via **Request Body**
 - Format: JSON
@@ -64,7 +64,7 @@ docker run -d -p 8080:8080 fizzbuzz-stub-api
 }
 ```
 
-### Response
+#### Response
 
 - Get successful result
 - Return http status 200
@@ -90,15 +90,15 @@ docker run -d -p 8080:8080 fizzbuzz-stub-api
 }
 ```
 
-`GET /saying/{number}`
+### **GET** /saying/{number}
 
-### Request
+#### Request
 
 - Send number via **QueryString**
 - Replace {number} by positive number
 - Example: `/saying/3`
 
-### Response
+#### Response
 
 - Get successful result
 - Return http status 200
