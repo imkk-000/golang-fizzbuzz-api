@@ -30,9 +30,7 @@ func TestATDDSayNumber(t *testing.T) {
 	for sayNumber, expectedSayNumber := range sayNumbers {
 		url := fmt.Sprintf("%s/say/%d", HOST, sayNumber)
 		resp, err := http.Get(url)
-		if assert.NoError(err) {
-			assert.FailNow()
-		}
+		assert.NoError(err)
 		assert.NotNil(resp)
 		assert.Equal(http.StatusOK, resp.StatusCode)
 
