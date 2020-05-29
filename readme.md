@@ -32,7 +32,7 @@ Mostly used below words as message prefix
 
 ```json
 {
-    "modulationSequence": [
+    "modulationSequences": [
         {
             "key": 3,
             "value": "Fizz"
@@ -49,7 +49,7 @@ Mostly used below words as message prefix
 ```json
 {
     "updateCount": 1,
-    "modulationSequence": [
+    "modulationSequences": [
         {
             "key": 3,
             "value": "Fizz"
