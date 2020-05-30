@@ -94,7 +94,7 @@ docker run -d -p 8080:8080 fizzbuzz-stub-api
 
 #### Request
 
-- Send number via **QueryString**
+- Send number via **Parameter in Path**
 - Replace {number} by positive number
 - Example: `/saying/3`
 
