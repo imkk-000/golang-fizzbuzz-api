@@ -27,11 +27,11 @@ func TestGetCacheWithObject(t *testing.T) {
 		ModulationSequences: modulationSequences,
 	}
 	sayingNumberRepository := &SayingNumberRepositoryMock{}
-	sayingNumberRepository.On("ReadCache", "modulationSequence").Return(
+	sayingNumberRepository.On("ReadCache", ModulationSequenceKey).Return(
 		model.ModulationSequenceRequest{
 			ModulationSequences: modulationSequences,
 		}, nil)
-	sayingNumberRepository.On("ReadCache", "updateCount").Return(1, nil)
+	sayingNumberRepository.On("ReadCache", UpdateCountKey).Return(1, nil)
 
 	service := &SayingNumberServiceImpl{
 		Repository: sayingNumberRepository,
@@ -45,7 +45,7 @@ func TestGetCacheWithObject(t *testing.T) {
 func TestGetCacheWithErrorModulationSequence(t *testing.T) {
 	expectedError := errors.New("not existing key: modulationSequence")
 	sayingNumberRepository := &SayingNumberRepositoryMock{}
-	sayingNumberRepository.On("ReadCache", "modulationSequence").Return(nil, expectedError)
+	sayingNumberRepository.On("ReadCache", ModulationSequenceKey).Return(nil, expectedError)
 	service := &SayingNumberServiceImpl{
 		Repository: sayingNumberRepository,
 	}
@@ -59,8 +59,8 @@ func TestGetCacheWithErrorModulationSequence(t *testing.T) {
 func TestGetCacheWithErrorUpdateCount(t *testing.T) {
 	expectedError := errors.New("not existing key: updateCount")
 	sayingNumberRepository := &SayingNumberRepositoryMock{}
-	sayingNumberRepository.On("ReadCache", "modulationSequence").Return([]model.ModulationSequenceRequest{}, nil)
-	sayingNumberRepository.On("ReadCache", "updateCount").Return(nil, expectedError)
+	sayingNumberRepository.On("ReadCache", ModulationSequenceKey).Return([]model.ModulationSequenceRequest{}, nil)
+	sayingNumberRepository.On("ReadCache", UpdateCountKey).Return(nil, expectedError)
 	service := &SayingNumberServiceImpl{
 		Repository: sayingNumberRepository,
 	}
@@ -89,9 +89,9 @@ func TestSaveCacheWithObject(t *testing.T) {
 		},
 	}
 	sayingNumberRepository := &SayingNumberRepositoryMock{}
-	sayingNumberRepository.On("ReadCache", "updateCount").Return(0, nil)
-	sayingNumberRepository.On("WriteCache", "modulationSequence", modulationSequenceRequest).Return(nil)
-	sayingNumberRepository.On("WriteCache", "updateCount", 1).Return(nil)
+	sayingNumberRepository.On("ReadCache", UpdateCountKey).Return(0, nil)
+	sayingNumberRepository.On("WriteCache", ModulationSequenceKey, modulationSequenceRequest).Return(nil)
+	sayingNumberRepository.On("WriteCache", UpdateCountKey, 1).Return(nil)
 	service := &SayingNumberServiceImpl{
 		Repository: sayingNumberRepository,
 	}
@@ -104,7 +104,7 @@ func TestSaveCacheWithObject(t *testing.T) {
 func TestSaveCacheWithReadCacheError(t *testing.T) {
 	expectedError := errors.New("not existing key: updateCount")
 	sayingNumberRepository := &SayingNumberRepositoryMock{}
-	sayingNumberRepository.On("ReadCache", "updateCount").Return(0, expectedError)
+	sayingNumberRepository.On("ReadCache", UpdateCountKey).Return(0, expectedError)
 	service := &SayingNumberServiceImpl{
 		Repository: sayingNumberRepository,
 	}
@@ -118,8 +118,8 @@ func TestSaveCacheWithReadCacheError(t *testing.T) {
 func TestSaveCacheWithWriteCacheModulationSequenceError(t *testing.T) {
 	expectedError := errors.New("cannot write cache with key: modulationSequence")
 	sayingNumberRepository := &SayingNumberRepositoryMock{}
-	sayingNumberRepository.On("ReadCache", "updateCount").Return(0, nil)
-	sayingNumberRepository.On("WriteCache", "modulationSequence", model.ModulationSequenceRequest{}).Return(expectedError)
+	sayingNumberRepository.On("ReadCache", UpdateCountKey).Return(0, nil)
+	sayingNumberRepository.On("WriteCache", ModulationSequenceKey, model.ModulationSequenceRequest{}).Return(expectedError)
 	service := &SayingNumberServiceImpl{
 		Repository: sayingNumberRepository,
 	}
@@ -132,9 +132,9 @@ func TestSaveCacheWithWriteCacheModulationSequenceError(t *testing.T) {
 func TestSaveCacheWithWriteCacheIncreasingUpdateCountError(t *testing.T) {
 	expectedError := errors.New("cannot write cache with key: updateCount")
 	sayingNumberRepository := &SayingNumberRepositoryMock{}
-	sayingNumberRepository.On("ReadCache", "updateCount").Return(0, nil)
-	sayingNumberRepository.On("WriteCache", "modulationSequence", model.ModulationSequenceRequest{}).Return(nil)
-	sayingNumberRepository.On("WriteCache", "updateCount", 1).Return(expectedError)
+	sayingNumberRepository.On("ReadCache", UpdateCountKey).Return(0, nil)
+	sayingNumberRepository.On("WriteCache", ModulationSequenceKey, model.ModulationSequenceRequest{}).Return(nil)
+	sayingNumberRepository.On("WriteCache", UpdateCountKey, 1).Return(expectedError)
 	service := &SayingNumberServiceImpl{
 		Repository: sayingNumberRepository,
 	}
